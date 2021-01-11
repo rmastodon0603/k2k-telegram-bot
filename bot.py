@@ -5,7 +5,7 @@ import os.path
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.utils import executor
 from jira import *
-from jiraCommandFile import myTasksInJira, teamTasksInJira
+from jiraCommandFile import *
 
 
 logging.basicConfig(level=logging.INFO)
@@ -33,6 +33,13 @@ async def showTasksOfTeam(message: types.Message):
 	await message.answer("Задачи команды в работе: \n")
 	for task in team_tasks_in_jira:
 		await message.answer(str('{}: {}: {}'.format(task.key, task.fields.summary, task.fields.assignee)))
+
+@dp.message_handler(commands=['mytasksbacklog'])
+async def showTasksOfTeam(message: types.Message):
+    team_tasks_in_jira = teamTasksInJira()
+    await message.answer("Мой backlog задач: \n")
+    for task in team_tasks_in_jira:
+        await message.answer(str('{}: {}: {}'.format(task.key, task.fields.summary, task.fields.assignee)))
 
 if __name__ == '__main__':
     executor.start_polling(dp)
