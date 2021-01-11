@@ -36,9 +36,9 @@ async def showTasksOfTeam(message: types.Message):
 
 @dp.message_handler(commands=['mytasksbacklog'])
 async def showTasksOfTeam(message: types.Message):
-    team_tasks_in_jira = teamTasksInJira()
+    my_backlog_tasks_in_jira = myTasksInJiraBacklog()
     await message.answer("Мой backlog задач: \n")
-    for task in team_tasks_in_jira:
+    for task in my_backlog_tasks_in_jira:
         await message.answer(str('{}: {}: {}'.format(task.key, task.fields.summary, task.fields.assignee)))
 
 if __name__ == '__main__':
