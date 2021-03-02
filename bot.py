@@ -6,19 +6,20 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.utils import executor
 from jira import *
 from jiraCommandFile import *
+from telegram_bot_token import token
 
 
 logging.basicConfig(level=logging.INFO)
 
 now = datetime.datetime.now()
 
-bot = Bot(token="967548998:AAG_L68xhcsQtWbXRroeKpcKUHJQA__1_IE") # Test Vova it Bot
+bot = Bot(token = token) # Test Vova it Bot
 dp = Dispatcher(bot)
 
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
-    await message.reply("Тест")
+    await message.answer("Тест")
 
 @dp.message_handler(commands=['mytasks'])
 async def showTasksOfMe(message: types.Message):
