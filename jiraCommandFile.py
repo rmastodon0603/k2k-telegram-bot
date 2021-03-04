@@ -33,5 +33,27 @@ def myTasksInJiraBacklog():
 
 	return team_tasks_in_jira_backlog
 
+def CurerentUserTasksInOneMessage():
+	all_tasks = {}
+	backlog_tasks = jira.search_issues('assignee = currentUser() and status = "Backlog"', maxResults = 10)
+	inprogress_tasks = jira.search_issues('assignee = currentUser() and status = "In progress"', maxResults=10)
+	selectedDevelope_tasks = jira.search_issues('assignee = currentUser() and status = "Selected for Development"', maxResults=10)
+
+	for issue in backlog_tasks:
+		all_tasks[issue.key] = issue.fields.summary
+
+	for issue in inprogress_tasks:
+		all_tasks[issue.key] = issue.fields.summary
+
+	for issue in selectedDevelope_tasks:
+		all_tasks[issue.key] = issue.fields.summary
+
+	return all_tasks
+
+def testtask():
+	todo_tasks = jira.search_issues('assignee = currentUser() and status = "Selected for Development"')
+	for issue in todo_tasks:
+		print(str('{}: {}'.format(issue.key, issue.fields.summary)))
+
 if __name__ == '__main__':
-	myTasksInJiraBacklog()
+	CurerentUserTasksInOneMessage()

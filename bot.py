@@ -12,13 +12,13 @@ logging.basicConfig(level=logging.INFO)
 
 now = datetime.datetime.now()
 
-bot = Bot(token="967548998:AAG_L68xhcsQtWbXRroeKpcKUHJQA__1_IE") # Test Vova it Bot
+bot = Bot(token="967548998:AAHM_w_qfi2d9YYPZVMZnjEZoGzx_8afZeU") # Test Vova it Bot
 dp = Dispatcher(bot)
 
 
 @dp.message_handler(commands=['start'])
 async def process_start_command(message: types.Message):
-    await message.reply("Тест")
+    await message.answer("Привет, это телеграм - бот команды kith2kin. Чтобы воспользоваться им начните вводить сообщение с '/' и вам будет доступен список команд бота. Хорошего рабочего дня!")
 
 @dp.message_handler(commands=['mytasks'])
 async def showTasksOfMe(message: types.Message):
